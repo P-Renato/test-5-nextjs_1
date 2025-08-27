@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -43,10 +42,35 @@ export default function RegisterForm(){
         }
     })
 
+    async function onSubmit(values: z.infer<typeof formSchema>){
+        console.log("Register form values: ", values);
+
+        try {
+            const response = await fetch('/api/auth/register', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(values)
+            });
+            if(!response.ok){
+                throw new Error("Register failed");
+            }
+            const data = await response.json();
+            console.log("Register successful: ", data);
+            // router.push('/login')
+        }
+        catch (err) {
+
+        }
+    }
+
     return (
         <div className="border m-4 p-4 w-3xl justify-center">
             <Form {...form}>
-                <form className="border ">
+                <form className="border " onSubmit={
+                    form.handleSubmit(onSubmit)
+                }>
                     <FormField 
                     control={form.control}
                     name="username"
