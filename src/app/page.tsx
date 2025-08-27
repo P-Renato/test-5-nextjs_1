@@ -1,6 +1,6 @@
 import Header from '@/components/Header'
 import Todos from '@/components/Todos'
-import React from 'react'
+
 
 const page = () => {
   return (

@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 
 const Todos = () => {
-    const [tasks, setTasks] = useState(["Take a shower", "eat", "sleep"]);
+    const [tasks, setTasks] = useState<string[]>([]);
     const [newTask, setNewTask] = useState("");
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -62,14 +62,30 @@ const Todos = () => {
             
         
             <ul>
-                {tasks.map((task, index) => (
+                {/* { tasks.length > 0 ? (
+                    tasks.map((task, index) => (
                         <li className='w-full flex justify-between border-2 rounded-2xl *:m-2 m-1 ' key={index}>
                             <span className='flex-1' >{task}</span>
                             <button className='border cursor-pointer p-1' onClick={() => deleteTask(index)}>Delete</button>
                             <button className='border cursor-pointer p-1' onClick={() => moveTaskUp(index)}>Move up</button>
                             <button className='border cursor-pointer p-1' onClick={() => moveTaskDown(index)}>Move down</button>
                         </li>
-                    ))}
+                    ))
+                ) : (
+                    <p className="text-gray-500 mt-2">No tasks yet. Add one!</p>
+                )
+                } */}
+                {
+                     tasks.map((task, index) => (
+                        <li className='w-full flex justify-between border-2 rounded-2xl *:m-2 m-1 ' key={index}>
+                            <span className='flex-1' >{task}</span>
+                            <button className='border cursor-pointer p-1' onClick={() => deleteTask(index)}>Delete</button>
+                            <button className='border cursor-pointer p-1' onClick={() => moveTaskUp(index)}>Move up</button>
+                            <button className='border cursor-pointer p-1' onClick={() => moveTaskDown(index)}>Move down</button>
+                        </li>
+                    ))
+                }
+                    
                 
             </ul>
         </section>
